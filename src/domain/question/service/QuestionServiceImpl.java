@@ -1,5 +1,9 @@
 package domain.question.service;
 
-public class QuestionServiceImpl {
+import java.util.List;
+
+public class QuestionServiceImpl implements QuestionService {
+	
+
 
 }

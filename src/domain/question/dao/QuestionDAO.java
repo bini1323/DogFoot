@@ -1,5 +1,5 @@
 package domain.question.dao;
 
-public class QuestionDAO {
+public interface QuestionDAO {
 
 }

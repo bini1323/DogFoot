@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.example.mapper.BoardQuestionMapper">
+    <select id="getAllBoardQuestions" resultType="BoardQuestion">
+        SELECT * FROM BOARDQUESTION
+    </select>
+   
+    <select id="getBoardQuestionById" parameterType="String" resultType="BoardQuestion">
+        SELECT * FROM BOARDQUESTION WHERE BOARDQUESTIONID = #{boardQuestionId}
+    </select>
+   
+    <insert id="insertBoardQuestion" parameterType="BoardQuestion">
+        INSERT INTO BOARDQUESTION (BOARDQUESTIONID, TITLE, CONTENT, VIEWCOUNT, PICTUREFILE, USERID, DELETEYN, CREATEDDATE, MODIFIEDDATE)
+        VALUES (#{boardQuestionId}, #{title}, #{content}, #{viewCount}, #{pictureFile}, #{userId}, #{deleteYn}, #{createdDate}, #{modifiedDate})
+    </insert>
+   
+    <update id="updateBoardQuestion" parameterType="BoardQuestion">
+        UPDATE BOARDQUESTION
+        SET TITLE = #{title}, CONTENT = #{content}, VIEWCOUNT = #{viewCount}, PICTUREFILE = #{pictureFile}, USERID = #{userId}, DELETEYN = #{deleteYn}, CREATEDDATE = #{createdDate}, MODIFIEDDATE = #{modifiedDate}
+        WHERE BOARDQUESTIONID = #{boardQuestionId}
+    </update>
+   
+    <delete id="deleteBoardQuestion" parameterType="String">
+        DELETE FROM BOARDQUESTION WHERE BOARDQUESTIONID = #{boardQuestionId}
+        
+    </delete>
+    
+</mapper>
