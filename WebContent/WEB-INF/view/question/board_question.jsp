@@ -58,6 +58,15 @@
         <th>일시</th>
         <th>조회수</th>
     </tr>
+     <c:forEach var="question" items="${questions}">
+        <tr>
+            <td class="center">${question.boardQuestionId}</td>
+            <td class="left">${question.title}</td>
+            <td class="center">${question.userId}</td>
+            <td class="center">${question.createDate}</td>
+            <td class="center">${question.viewCount}</td>
+        </tr>
+    </c:forEach>
     <tr>
         <td class="center">1</td>
         <td class="left">게시글입니다.</td>

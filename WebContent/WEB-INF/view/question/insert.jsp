@@ -26,18 +26,18 @@
         <h1>게시판 글쓰기</h1>
     </div>
 
-    <form action="savePost.jsp" method="post" id="postForm" enctype="multipart/form-data">
+   <form action="<c:url value='/board/question'/>${questionBoard.id != null ? '/update' : ''}" method="post">
         <div class="form-group">
             <label for="title">제목:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" value="${questionBoard.title}" required>
         </div>
         <div class="form-group">
             <label for="author">작성자:</label>
-            <input type="text" id="author" name="author" required>
+            <input type="text" id="author" name="author" value="${questionBoard.author}" required>
         </div>
         <div class="form-group">
             <label for="content">내용:</label>
-            <textarea id="content" name="content" rows="10" required></textarea>
+             <textarea id="content" name="content" required>${questionBoard.content}</textarea>
         </div>
         <div class="form-group">
             <label for="image">사진:</label>
@@ -55,6 +55,7 @@
             <button type="reset">초기화</button>
         </div>
     </form>
+    <a href="<c:url value='/board/questions'/>">목록으로 돌아가기</a>
 </div>
 <script src="<c:url value='/resources/js/insert/insert.js'/>"></script>
 </body>

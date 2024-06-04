@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="domain.question.mapper.QuestionMapper">
+
+    <resultMap id="QuestionBoardVOResult" type="QuestionBoardVO">
+        <result property="boardQuestionId" column="boardQuestionId"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="viewCount" column="viewCount"/>
+        <result property="pictureFile" column="pictureFile"/>
+        <result property="userId" column="userId"/>
+        <result property="deleteyn" column="deleteyn"/>
+        <result property="createDate" column="createDate"/>
+        <result property="modifieDate" column="modifiedDate"/>
+    </resultMap>
+
+    <select id="getAllQuestions" resultMap="QuestionBoardVOResult">
+        SELECT * FROM question_board
+    </select>
+
+    <select id="getQuestionById" parameterType="String" resultMap="QuestionBoardVOResult">
+        SELECT * FROM question_board WHERE boardQuestionId = #{id}
+    </select>
+
+    <insert id="insertQuestion" parameterType="QuestionBoardVO">
+        INSERT INTO question_board (boardQuestionId, title, content, viewCount, pictureFile, userId, deleteyn, createDate, modifiedDate)
+        VALUES (#{boardQuestionId}, #{title}, #{content}, #{viewCount}, #{pictureFile}, #{userId}, #{deleteyn}, #{createDate}, #{modifieDate})
+    </insert>
+
+    <update id="updateQuestion" parameterType="QuestionBoardVO">
+        UPDATE question_board
+        SET title = #{title},
+            content = #{content},
+            viewCount = #{viewCount},
+            pictureFile = #{pictureFile},
+            userId = #{userId},
+            deleteyn = #{deleteyn},
+            createDate = #{createDate},
+            modifiedDate = #{modifieDate}
+        WHERE boardQuestionId = #{boardQuestionId}
+    </update>
+
+    <delete id="deleteQuestion" parameterType="String">
+        DELETE FROM question_board WHERE boardQuestionId = #{id}
+    </delete>
+</mapper>

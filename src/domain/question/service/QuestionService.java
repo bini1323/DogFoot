@@ -1,34 +1,17 @@
 package domain.question.service;
 
 import java.util.List;
-
 import domain.question.vo.QuestionBoardVO;
 
 public interface QuestionService {
 
-	static List<QuestionBoardVO> getAllQuestionBoardVO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    List<QuestionBoardVO> getAllQuestionBoardVO();
 
-	static QuestionBoardVO getQuestionBoardById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    QuestionBoardVO getQuestionBoardById(String id);
 
-	static void insertQuestionBoardVO(QuestionBoardVO boardQuestion) {
-		// TODO Auto-generated method stub
-		
-	}
+    void insertQuestionBoardVO(QuestionBoardVO boardQuestion);
 
-	static void updateQuestionBoard(QuestionBoardVO boardQuestion) {
-		// TODO Auto-generated method stub
-		
-	}
+    void updateQuestionBoard(QuestionBoardVO boardQuestion);
 
-	static void deleteQuestionBoard(String id) {
-		// TODO Auto-generated method stub
-		
-	}
-
+    void deleteQuestionBoard(String id);
 }
