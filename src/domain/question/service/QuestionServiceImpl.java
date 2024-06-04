@@ -2,11 +2,13 @@ package domain.question.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import domain.question.dao.QuestionDAO;
 import domain.question.vo.QuestionBoardVO;
 
 @Service
+@Repository
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="domain.question.mapper.CommentQuestionMapper">
+
+    <resultMap id="CommentQuestionVOResult" type="domain.question.vo.CommentQuestionVO">
+        <result property="commentQuestionId" column="COMMENTQUESTIONID"/>
+        <result property="content" column="CONTENT"/>
+        <result property="userId" column="USERID"/>
+        <result property="boardQuestionId" column="BOARDQUESTIONID"/>
+        <result property="deleteyn" column="DELETEYN"/>
+        <result property="createdDate" column="CREATEDDATE"/>
+        <result property="modifiedDate" column="MODIFIEDDATE"/>
+    </resultMap>
+
+    <select id="getAllComments" resultMap="CommentQuestionVOResult">
+        SELECT * FROM COMMENTQUESTION
+    </select>
+
+    <select id="getCommentById" parameterType="String" resultMap="CommentQuestionVOResult">
+        SELECT * FROM COMMENTQUESTION WHERE COMMENTQUESTIONID = #{id}
+    </select>
+
+    <insert id="insertComment" parameterType="domain.question.vo.CommentQuestionVO">
+        INSERT INTO COMMENTQUESTION (COMMENTQUESTIONID, CONTENT, USERID, BOARDQUESTIONID, DELETEYN, CREATEDDATE, MODIFIEDDATE)
+        VALUES (#{commentQuestionId}, #{content}, #{userId}, #{boardQuestionId}, #{deleteyn}, #{createdDate}, #{modifiedDate})
+    </insert>
+
+    <update id="updateComment" parameterType="domain.question.vo.CommentQuestionVO">
+        UPDATE COMMENTQUESTION
+        SET CONTENT = #{content},
+            USERID = #{userId},
+            BOARDQUESTIONID = #{boardQuestionId},
+            DELETEYN = #{deleteyn},
+            CREATEDDATE = #{createdDate},
+            MODIFIEDDATE = #{modifiedDate}
+        WHERE COMMENTQUESTIONID = #{commentQuestionId}
+    </update>
+
+    <delete id="deleteComment" parameterType="String">
+        DELETE FROM COMMENTQUESTION WHERE COMMENTQUESTIONID = #{id}
+    </delete>
+</mapper>
