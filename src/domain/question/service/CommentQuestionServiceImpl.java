@@ -9,7 +9,7 @@ import domain.question.vo.CommentQuestionVO;
 @Service
 public class CommentQuestionServiceImpl implements CommentQuestionService {
 
-    @Autowired
+    @Autowired(required=false)
     private CommentQuestionDAO commentQuestionDAO;
 
     @Override

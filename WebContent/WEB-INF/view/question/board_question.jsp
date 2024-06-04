@@ -131,5 +131,64 @@
     </div>
 </footer>
 <script src="<c:url value='/resources/js/board_question/scripts.js'/>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $('#listButton').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/board/questions',
+            success: function(response) {             
+                window.location.href = '/board/questions';
+            },
+            error: function(xhr, status, error) {               
+                console.error(error);
+            }
+        });
+    });
+
+   
+    $('#writeButton').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/board/question/new',
+            success: function(response) {               
+                window.location.href = '/board/question/new';
+            },
+            error: function(xhr, status, error) {               
+                console.error(error);
+            }
+        });
+    });
+
+    
+    $('#editButton').click(function() {
+        var questionId = ${question.boardQuestionId};
+        $.ajax({
+            type: 'GET',
+            url: '/board/question/edit/' + questionId,
+            success: function(response) {            
+                window.location.href = '/board/question/edit/' + questionId;
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+
+    $('#deleteButton').click(function() {
+        var questionId = ${question.boardQuestionId};
+        $.ajax({
+            type: 'GET',
+            url: '/board/question/delete/' + questionId,
+            success: function(response) {
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
 </body>
 </html>

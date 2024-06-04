@@ -11,7 +11,7 @@ import domain.question.vo.QuestionBoardVO;
 @Repository
 public class QuestionServiceImpl implements QuestionService {
 
-    @Autowired
+    @Autowired(required=false)
     private QuestionDAO questionDAO;
 
     @Override

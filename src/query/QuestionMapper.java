@@ -1,4 +1,4 @@
-package global.mybatis.query;
+package query;
 
 import java.util.List;
 import domain.question.vo.QuestionBoardVO;

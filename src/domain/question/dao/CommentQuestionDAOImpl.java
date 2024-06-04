@@ -4,12 +4,42 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import domain.question.vo.CommentQuestionVO;
-import global.mybatis.query.CommentQuestionMapper;
+import query.CommentQuestionMapper;
 
 @Repository
 public class CommentQuestionDAOImpl implements CommentQuestionDAO {
 
-    @Autowired
+	@Override
+	public List<CommentQuestionVO> getAllComments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommentQuestionVO getCommentById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertComment(CommentQuestionVO comment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateComment(CommentQuestionVO comment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteComment(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    /*@Autowired(required=false)
     private CommentQuestionMapper commentQuestionMapper;
 
     @Override
@@ -35,5 +65,5 @@ public class CommentQuestionDAOImpl implements CommentQuestionDAO {
     @Override
     public void deleteComment(String id) {
         commentQuestionMapper.deleteComment(id);
-    }
+    }*/
 }

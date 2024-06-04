@@ -17,7 +17,7 @@ import domain.question.service.CommentQuestionService;
 @RequestMapping("/comment")
 public class CommentQuestionController {
 
-	@Autowired
+	@Autowired(required=false)
     private CommentQuestionService CommentQuestionService;
 
     @GetMapping("/comments")

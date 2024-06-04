@@ -15,12 +15,12 @@ import domain.question.vo.QuestionBoardVO;
 
 
 
-	@Controller
-	@RequestMapping("/board")
-	public class QuestionController {
+@Controller
+@RequestMapping("/board")
+public class QuestionController {
 
 
-	    @Autowired
+	    @Autowired(required=false)
 	    private QuestionService questionService;
 
 	    @GetMapping("/questions")
@@ -67,4 +67,4 @@ import domain.question.vo.QuestionBoardVO;
 	        questionService.deleteQuestionBoard(id);
 	        return "redirect:/board/questions";
 	    }
-	}
+}

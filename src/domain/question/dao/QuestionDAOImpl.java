@@ -4,12 +4,42 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import domain.question.vo.QuestionBoardVO;
-import global.mybatis.query.QuestionMapper;
+import query.QuestionMapper;
 
 @Repository
 public class QuestionDAOImpl implements QuestionDAO {
 
-    @Autowired
+	@Override
+	public List<QuestionBoardVO> getAllQuestions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public QuestionBoardVO getQuestionById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertQuestion(QuestionBoardVO question) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateQuestion(QuestionBoardVO question) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteQuestion(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    /*@Autowired
     private QuestionMapper questionMapper;
 
     @Override
@@ -35,5 +65,5 @@ public class QuestionDAOImpl implements QuestionDAO {
     @Override
     public void deleteQuestion(String id) {
         questionMapper.deleteQuestion(id);
-    }
+    }*/
 }
