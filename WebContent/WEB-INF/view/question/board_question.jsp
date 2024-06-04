@@ -97,12 +97,14 @@
     <a href="https://www.naver.com/">▶</a>
 </div>
 
+
 <span class="right">
-    <input type="button" value="목록" class="greylist">
-    <input type="button" value="글쓰기" class="gradient">
-    <input type="button" value="글수정" class="gradient">
-    <input type="button" value="글삭제" class="gradient">
+    <input type="button" value="목록" onclick="location.href='/board/questions';" class="greylist">
+    <input type="button" value="글쓰기" onclick="location.href='/board/question/new';" class="gradient">
+    <input type="button" value="글수정" onclick="location.href='/board/question/edit/${question.boardQuestionId}';" class="gradient">
+    <input type="button" value="글삭제" onclick="location.href='/board/question/delete/${question.boardQuestionId}';" class="gradient">
 </span>
+
 
 <footer>
     <div class="wrap">
