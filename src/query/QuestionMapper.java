@@ -4,6 +4,7 @@ import java.util.List;
 import domain.question.vo.QuestionBoardVO;
 import org.apache.ibatis.annotations.*;
 
+
 public interface QuestionMapper {
 
     @Select("SELECT * FROM question_board")

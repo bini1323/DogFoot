@@ -9,25 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import domain.question.service.QuestionService;
 import domain.question.vo.QuestionBoardVO;
 
 
-
 @Controller
-@RequestMapping("/board")
 public class QuestionController {
 
 
 	    @Autowired(required=false)
 	    private QuestionService questionService;
 
-	    @GetMapping("/questions")
+	    @GetMapping("/question")
 	    public String getAllBoardQuestions(Model model) {
 	        List<QuestionBoardVO> questions = questionService.getAllQuestionBoardVO();
 	        model.addAttribute("questions", questions);
-	        return "board/list";
+	        return "board_question/board_question";
 	    }
 
 	    @GetMapping("/question/{id}")
@@ -46,7 +43,7 @@ public class QuestionController {
 	    @PostMapping("/question")
 	    public String createBoardQuestion(@ModelAttribute QuestionBoardVO questionBoardVO) {
 	        questionService.insertQuestionBoardVO(questionBoardVO);
-	        return "redirect:/board/questions";
+	        return "redirect:/question";
 	    }
 
 	    @GetMapping("/question/edit/{id}")
@@ -59,12 +56,13 @@ public class QuestionController {
 	    @PostMapping("/question/update")
 	    public String updateBoardQuestion(@ModelAttribute QuestionBoardVO boardQuestion) {
 	        questionService.updateQuestionBoard(boardQuestion);
-	        return "redirect:/board/questions";
+	        return "redirect:/question";
 	    }
 
 	    @GetMapping("/question/delete/{id}")
 	    public String deleteBoardQuestion(@PathVariable String id) {
 	        questionService.deleteQuestionBoard(id);
-	        return "redirect:/board/questions";
+	        return "redirect:/question";
 	    }
 }
+

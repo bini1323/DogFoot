@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-<a href="">d</a>
-<a href="question.p">헤이~</a>
+
 </body>
 </html>

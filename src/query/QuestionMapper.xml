@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="domain.question.mapper.QuestionMapper">
+<mapper namespace="domain.query.QuestionMapper">
 
     <resultMap id="QuestionBoardVOResult" type="QuestionBoardVO">
         <result property="boardQuestionId" column="boardQuestionId"/>
@@ -39,7 +39,7 @@
             userId = #{userId},
             deleteyn = #{deleteyn},
             createDate = #{createDate},
-            modifiedDate = #{modifieDate}
+            modifiedDate = #{modifiedDate}
         WHERE boardQuestionId = #{boardQuestionId}
     </update>
 

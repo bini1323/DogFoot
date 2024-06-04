@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<!-- 질문 게시판 -->
-		<typeAlias type="domain.user.vo.CommentQuestionVO" alias="commentquestionvo"/>
-		<typeAlias type="domain.user.vo.QuestionBoardVO" alias="questionboardvo"/>
+		<typeAlias type="domain.question.vo.CommentQuestionVO" alias="commentquestionvo"/>
+		<typeAlias type="domain.question.vo.QuestionBoardVO" alias="questionboardvo"/>
+		
 		
 	</typeAliases>
+	
 </configuration>

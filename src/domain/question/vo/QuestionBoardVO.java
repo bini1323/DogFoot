@@ -1,7 +1,5 @@
 package domain.question.vo;
 
-import java.time.LocalDateTime;
-
 public class QuestionBoardVO {
 
     private String boardQuestionId;
@@ -10,9 +8,9 @@ public class QuestionBoardVO {
     private int viewCount;
     private String pictureFile;
     private String userId;
-    private String deleteyn;
-    private LocalDateTime createDate;
-    private LocalDateTime modifiedDate;
+    private boolean deleteyn;
+    private String createDate;
+    private String modifiedDate;
 
     // Getter and Setter for boardQuestionId
     public String getBoardQuestionId() {
@@ -69,29 +67,27 @@ public class QuestionBoardVO {
     }
 
     // Getter and Setter for deleteyn
-    public String getDeleteyn() {
+    public boolean getDeleteyn() {
         return deleteyn;
     }
 
-    public void setDeleteyn(String deleteyn) {
+    public void setDeleteyn(boolean deleteyn) {
         this.deleteyn = deleteyn;
     }
 
-    // Getter and Setter for createDate
-    public LocalDateTime getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
-    // Getter and Setter for modifiedDate
-    public LocalDateTime getModifiedDate() {
+    public String getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(LocalDateTime modifiedDate) {
+    public void setModifiedDate(String modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 }

@@ -99,7 +99,7 @@
 
 
 <span class="right">
-    <input type="button" value="목록"  id="listButton" class="greylist">
+    <input type="button" value="목록" id="listButton" class="greylist">
     <input type="button" value="글쓰기" id="writeButton" class="gradient">
     <input type="button" value="글수정" id="editButton" class="gradient">
     <input type="button" value="글삭제" id="deleteButton" class="gradient">
@@ -134,15 +134,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+
+	$(document).ready(function(){
+   	 loadQuestions();
+
+	
     $('#listButton').click(function() {
         $.ajax({
-            type: 'GET',
-            url: '/board/questions',
+            type: "GET",
+            url: "/board_question/board_question/",
             success: function(response) {             
-                window.location.href = '/board/questions';
-            },
-            error: function(xhr, status, error) {               
-                console.error(error);
+                window.location.href = '/board_question/board_question';
             }
         });
     });
@@ -151,24 +153,25 @@
     $('#writeButton').click(function() {
         $.ajax({
             type: 'GET',
-            url: '/board/question/new',
+            url: '/board_question/board_question.',
             success: function(response) {               
-                window.location.href = '/board/question/new';
-            },
-            error: function(xhr, status, error) {               
-                console.error(error);
+                window.location.href = '/board_question/board_question/new';
             }
         });
     });
 
+    $(document).on("click", "#I", function(){
+		
+		location.href="insert.jsp";
+	});
     
     $('#editButton').click(function() {
         var questionId = ${question.boardQuestionId};
         $.ajax({
             type: 'GET',
-            url: '/board/question/edit/' + questionId,
+            url: '/board_question/question/edit/' + questionId,
             success: function(response) {            
-                window.location.href = '/board/question/edit/' + questionId;
+                window.location.href = '/board_question/board_question/edit/' + questionId;
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -181,7 +184,7 @@
         var questionId = ${question.boardQuestionId};
         $.ajax({
             type: 'GET',
-            url: '/board/question/delete/' + questionId,
+            url: '/board_question/question/delete/' + questionId,
             success: function(response) {
             },
             error: function(xhr, status, error) {
