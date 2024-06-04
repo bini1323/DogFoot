@@ -10,6 +10,7 @@
 							http://www.springframework.org/schema/tx 
 							http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+<context:component-scan base-package="domain.question.controller" />
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="java:comp/env/jdbc/jndi_spring_xe"></property>
