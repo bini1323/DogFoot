@@ -1,7 +1,4 @@
-/QuestionBoardApplication.class
 /domain/
-/pom.xml
-/WebvcConfigurer.class
 /global/
 /log4j.xml
 /mybatis-config.xml

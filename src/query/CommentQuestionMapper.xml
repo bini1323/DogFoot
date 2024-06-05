@@ -1,45 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="query.QuestionMapper">
 
-<mapper namespace="domain.question.mapper.CommentQuestionMapper">
+<insert id="insertQuestion" parameterType="domain.question.vo.QuestionBoardVO" >
+INSERT INTO question_board (
+    boardQuestionId, title, content, viewCount,
+    pictureFile, userId, deleteyn, createDate, modifiedDate
+)
+VALUES (
+    #{boardQuestionId}, #{title}, #{content}, #{viewCount},
+    #{pictureFile}, #{userId}, #{deleteyn}, #{createDate}, #{modifieDate}
+)
+</insert>
 
-    <resultMap id="CommentQuestionVOResult" type="domain.question.vo.CommentQuestionVO">
-        <result property="commentQuestionId" column="COMMENTQUESTIONID"/>
-        <result property="content" column="CONTENT"/>
-        <result property="userId" column="USERID"/>
-        <result property="boardQuestionId" column="BOARDQUESTIONID"/>
-        <result property="deleteyn" column="DELETEYN"/>
-        <result property="createdDate" column="CREATEDDATE"/>
-        <result property="modifiedDate" column="MODIFIEDDATE"/>
-    </resultMap>
+<select id="getAllQuestions" resultType="domain.question.vo.QuestionBoardVO">
+SELECT * FROM question_board
+</select>
 
-    <select id="getAllComments" resultMap="CommentQuestionVOResult">
-        SELECT * FROM COMMENTQUESTION
-    </select>
+<select id="getQuestionById" parameterType="String" resultType="domain.question.vo.QuestionBoardVO">
+SELECT * FROM question_board WHERE boardQuestionId = #{id}
+</select>
 
-    <select id="getCommentById" parameterType="String" resultMap="CommentQuestionVOResult">
-        SELECT * FROM COMMENTQUESTION WHERE COMMENTQUESTIONID = #{id}
-    </select>
+<update id="updateQuestion" parameterType="domain.question.vo.QuestionBoardVO">
+UPDATE question_board
+SET
+    title = #{title},
+    content = #{content},
+    viewCount = #{viewCount},
+    pictureFile = #{pictureFile},
+    userId = #{userId},
+    deleteyn = #{deleteyn},
+    createDate = #{createDate},
+    modifiedDate = #{modifieDate}
+WHERE
+    boardQuestionId = #{boardQuestionId}
+</update>
 
-    <insert id="insertComment" parameterType="domain.question.vo.CommentQuestionVO">
-        INSERT INTO COMMENTQUESTION (COMMENTQUESTIONID, CONTENT, USERID, BOARDQUESTIONID, DELETEYN, CREATEDDATE, MODIFIEDDATE)
-        VALUES (#{commentQuestionId}, #{content}, #{userId}, #{boardQuestionId}, #{deleteyn}, #{createdDate}, #{modifiedDate})
-    </insert>
+<delete id="deleteQuestion" parameterType="String">
+DELETE FROM question_board WHERE boardQuestionId = #{id}
+</delete>
 
-    <update id="updateComment" parameterType="domain.question.vo.CommentQuestionVO">
-        UPDATE COMMENTQUESTION
-        SET CONTENT = #{content},
-            USERID = #{userId},
-            BOARDQUESTIONID = #{boardQuestionId},
-            DELETEYN = #{deleteyn},
-            CREATEDDATE = #{createdDate},
-            MODIFIEDDATE = #{modifiedDate}
-        WHERE COMMENTQUESTIONID = #{commentQuestionId}
-    </update>
-
-    <delete id="deleteComment" parameterType="String">
-        DELETE FROM COMMENTQUESTION WHERE COMMENTQUESTIONID = #{id}
-    </delete>
 </mapper>

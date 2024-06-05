@@ -1,69 +1,54 @@
 package domain.question.dao;
 
 import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import domain.question.vo.QuestionBoardVO;
-import query.QuestionMapper;
+
 
 @Repository
 public class QuestionDAOImpl implements QuestionDAO {
+	
 
+	@Autowired(required=false)
+	private SqlSessionTemplate sqlSession;
+	
 	@Override
-	public List<QuestionBoardVO> getAllQuestions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public QuestionBoardVO getQuestionById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insertQuestion(QuestionBoardVO question) {
-		// TODO Auto-generated method stub
+	public List<QuestionBoardVO> getAllQuestions(QuestionBoardVO qvo) {
 		
+		return sqlSession.selectList("getAllQuestions", qvo);
 	}
 
 	@Override
-	public void updateQuestion(QuestionBoardVO question) {
-		// TODO Auto-generated method stub
+	public List<QuestionBoardVO> getQuestionById(QuestionBoardVO qvo) {
 		
+		return sqlSession.selectList("getQuestionById", qvo);
 	}
 
 	@Override
-	public void deleteQuestion(String id) {
-		// TODO Auto-generated method stub
+	public int insertQuestion(QuestionBoardVO qvo) {
 		
+		return sqlSession.insert("insertQuestion", qvo);
 	}
 
-    /*@Autowired
-    private QuestionMapper questionMapper;
+	@Override
+	public int updateQuestion(QuestionBoardVO qvo) {
+		
+		return sqlSession.update("updateQuestion", qvo);
+	}
 
-    @Override
-    public List<QuestionBoardVO> getAllQuestions() {
-        return questionMapper.getAllQuestions();
-    }
+	@Override
+	public int deleteQuestion(QuestionBoardVO qvo) {
+		
+		return sqlSession.update("deleteQuestion", qvo);
+	}
 
-    @Override
-    public QuestionBoardVO getQuestionById(String id) {
-        return questionMapper.getQuestionById(id);
-    }
+	@Override
+	public int setViewCount(QuestionBoardVO qvo) {
+		
+		return sqlSession.update("setViewCount", qvo);
+	}
 
-    @Override
-    public void insertQuestion(QuestionBoardVO question) {
-        questionMapper.insertQuestion(question);
-    }
-
-    @Override
-    public void updateQuestion(QuestionBoardVO question) {
-        questionMapper.updateQuestion(question);
-    }
-
-    @Override
-    public void deleteQuestion(String id) {
-        questionMapper.deleteQuestion(id);
-    }*/
 }

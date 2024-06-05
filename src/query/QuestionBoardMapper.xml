@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="domain.question.dao.QuestionDAO">
+
+
+    
+    <select id="getAllQuestions" parameterType="questionboardvo" resultType="questionboardvo">
+        SELECT
+        		A.BOARDQUESTIONID			BOARDQUESTIONID
+        	   ,A.TITLE						TITLE
+        	   ,A.CONTENT					CONTENT
+        	   ,A.VIEWCOUNT					VIEWCOUNT
+        	   ,A.PICTUREFILE				PICTUREFILE
+        	   ,A.USERID					USERID
+        	   ,A.DELETEYN					DELETEYN
+        	   ,TO_CHAR(TO_DATE(A.CREATEDATE), 	 'YYYY-MM-DD')	CREATEDATE
+        	   ,TO_CHAR(TO_DATE(A.MODIFIEDDATE), 'YYYY-MM-DD')	MODIFIEDDATE
+        	   ,CEIL(ROW_NUMBER() OVER(ORDER BY A.BOARDQUESTIONID)/ #{pageSize} ) pageSize
+        	   ,COUNT(A.BOARDQUESTIONID) OVER() AS totalCount
+       	FROM	BOARDQUESTION A
+       	WHERE	A.DELETEYN = 'Y'
+		ORDER BY 1 DESC
+		
+	) WHERE pageSize = #{curPage}
+    </select>
+
+    <select id="getQuestionById" parameterType="questionboardvo" resultType="questionboardvo">
+         SELECT
+        		A.BOARDQUESTIONID			BOARDQUESTIONID
+        	   ,A.TITLE						TITLE
+        	   ,A.CONTENT					CONTENT
+        	   ,A.VIEWCOUNT					VIEWCOUNT
+        	   ,A.PICTUREFILE				PICTUREFILE
+        	   ,A.USERID					USERID
+        	   ,A.DELETEYN					DELETEYN
+        	   ,TO_CHAR(TO_DATE(A.CREATEDATE), 	 'YYYY-MM-DD')	CREATEDATE
+        	   ,TO_CHAR(TO_DATE(A.MODIFIEDDATE), 'YYYY-MM-DD')	MODIFIEDDATE
+       	FROM	BOARDQUESTION A
+       	WHERE	A.BOARDQUESTIONID			BOARDQUESTIONID
+       	AND		A.DELETEYN = 'Y'
+       	AND		A.BOARDQUESTIONID = #{boardQuestionId}
+       	
+    </select>
+
+    <insert id="insertQuestion" parameterType="questionboardvo">
+        INSERT INTO BOARDQUESTION (BOARDQUESTIONID, TITLE, CONTENT,
+        						    VIEWCOUNT, PICTUREFILE, USERID, DELETEYN,
+        						    CREATEDDATE, MODIFIEDDATE)
+        VALUES (#{BOARDQUESTIONID, jdbcType=VARCHAR}, #{TITLE jdbcType=VARCHAR}, #{CONTENT jdbcType=VARCHAR}, #{VIEWCOUNT jdbcType=NUMBER}, 
+       				 #{PICTUREFILE jdbcType=VARCHAR}, #{USERID jdbcType=VARCHAR},
+       				  #{DELETEYN jdbcType=VARCHAR}, #{CREATEDDATE jdbcType=DATE}, 
+       				  #{MODIFIEDDATE jdbcType=DATE}, 'Y', SYSDATE, SYSDATE)
+    </insert>
+
+    <update id="updateQuestion" parameterType="questionboardvo">
+        UPDATE BOARDQUESTION
+        SET TITLE = #{title},
+            CONTENT = #{content},
+            PICTUREFILE = #{pictureFile},
+            MODIFIEDDATE = SYSDATE
+        WHERE DELETEYN = 'Y'
+        AND	  BOARDQUESTIONID = #{boardQuestionId}
+    </update>
+
+    <delete id="deleteQuestion" parameterType="questionboardvo">
+     	
+     	UPDATE BOARDQUESTION
+     		SET DELETEYN	=	'N'
+     		   ,CREATEDATE  = SYSDATE
+     	WHERE	DELETEYN	=	'Y'
+     	AND		BOARDQUESTIONID = #{boardQuestionId}
+    </delete>
+</mapper>

@@ -5,13 +5,18 @@ import domain.question.vo.QuestionBoardVO;
 
 public interface QuestionService {
 
-    List<QuestionBoardVO> getAllQuestionBoardVO();
+	List<QuestionBoardVO> getAllQuestions(QuestionBoardVO qvo);
 
-    QuestionBoardVO getQuestionBoardById(String id);
+	List<QuestionBoardVO> getQuestionById(QuestionBoardVO qvo);
 
-    void insertQuestionBoardVO(QuestionBoardVO boardQuestion);
+	int insertQuestion(QuestionBoardVO qvo);
 
-    void updateQuestionBoard(QuestionBoardVO boardQuestion);
+	int updateQuestion(QuestionBoardVO qvo);
 
-    void deleteQuestionBoard(String id);
+	int deleteQuestion(QuestionBoardVO qvo);
+
+	int setViewCount(QuestionBoardVO qvo);
+
+
+
 }

@@ -29,6 +29,6 @@
 	</bean>
 		
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage"><value>domain.user.**.dao</value></property>
+		<property name="basePackage"><value>domain.question.**.dao</value></property>
 	</bean>
 </beans>

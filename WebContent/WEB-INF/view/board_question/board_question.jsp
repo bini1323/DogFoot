@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -130,65 +129,72 @@
         </div>
     </div>
 </footer>
+
 <script src="<c:url value='/resources/js/board_question/scripts.js'/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script>
+    $(document).ready(function(){
+        var questionId;
 
-	$(document).ready(function(){
-   	 loadQuestions();
-
-	
-    $('#listButton').click(function() {
-        $.ajax({
-            type: "GET",
-            url: "/board_question/board_question/",
-            success: function(response) {             
-                window.location.href = '/board_question/board_question';
-            }
+        $('table tr').click(function() {
+            questionId = $(this).find('td:first').text();
         });
-    });
 
-   
-    $('#writeButton').click(function() {
         $.ajax({
             type: 'GET',
-            url: '/board_question/board_question.',
-            success: function(response) {               
-                window.location.href = '/board_question/board_question/new';
-            }
-        });
-    });
-
-    $(document).on("click", "#I", function(){
-		
-		location.href="insert.jsp";
-	});
-    
-    $('#editButton').click(function() {
-        var questionId = ${question.boardQuestionId};
-        $.ajax({
-            type: 'GET',
-            url: '/board_question/question/edit/' + questionId,
-            success: function(response) {            
-                window.location.href = '/board_question/board_question/edit/' + questionId;
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-
-
-    $('#deleteButton').click(function() {
-        var questionId = ${question.boardQuestionId};
-        $.ajax({
-            type: 'GET',
-            url: '/board_question/question/delete/' + questionId,
+            url: '/question',
             success: function(response) {
+                var questions = response;
+                for(var i = 0; i < questions.length; i++) {
+                    var question = questions[i];
+                    var row = '<tr>';
+                    row += '<td class="center">' + question.boardQuestionId + '</td>';
+                    row += '<td class="left">' + question.title + '</td>';
+                    row += '<td class="center">' + question.userId + '</td>';
+                    row += '<td class="center">' + question.createDate + '</td>';
+                    row += '<td class="center">' + question.viewCount + '</td>';
+                    row += '</tr>';
+                    $('table').append(row);
+                }
             },
             error: function(xhr, status, error) {
                 console.error(error);
+            }
+        });
+
+        $('#listButton').click(function() {
+            window.location.href = 'question.p';
+        });
+
+        $('#writeButton').click(function() {
+            window.location.href = 'question/new.p';
+        });
+
+        $('#editButton').click(function() {
+            if(questionId) {
+                window.location.href = '/question/edit/' + questionId;
+            } else {
+                alert("질문을 선택해주세요.");
+            }
+        });
+
+        $('#deleteButton').click(function() {
+            if(questionId) {
+                if(confirm("정말 삭제하시겠습니까?")) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/question/delete/' + questionId,
+                        success: function(response) {
+                            alert("삭제되었습니다.");
+                            window.location.href = '/question';
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            } else {
+                alert("질문을 선택해주세요.");
             }
         });
     });

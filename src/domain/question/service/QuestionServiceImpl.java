@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import domain.question.dao.QuestionDAO;
 import domain.question.vo.QuestionBoardVO;
 
+
+
+
 @Service
 @Repository
 public class QuestionServiceImpl implements QuestionService {
@@ -15,27 +18,32 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionDAO questionDAO;
 
     @Override
-    public List<QuestionBoardVO> getAllQuestionBoardVO() {
-        return questionDAO.getAllQuestions();
+    public List<QuestionBoardVO> getAllQuestions(QuestionBoardVO qvo) {
+        return questionDAO.getAllQuestions(qvo);
     }
 
     @Override
-    public QuestionBoardVO getQuestionBoardById(String id) {
-        return questionDAO.getQuestionById(id);
+    public List<QuestionBoardVO> getQuestionById(QuestionBoardVO qvo) {
+        return questionDAO.getQuestionById(qvo);
     }
 
     @Override
-    public void insertQuestionBoardVO(QuestionBoardVO boardQuestion) {
-        questionDAO.insertQuestion(boardQuestion);
+    public int insertQuestion(QuestionBoardVO qvo) {
+        return questionDAO.insertQuestion(qvo);
     }
 
     @Override
-    public void updateQuestionBoard(QuestionBoardVO boardQuestion) {
-        questionDAO.updateQuestion(boardQuestion);
+    public int updateQuestion(QuestionBoardVO qvo) {
+        return questionDAO.updateQuestion(qvo);
     }
 
     @Override
-    public void deleteQuestionBoard(String id) {
-        questionDAO.deleteQuestion(id);
+    public int deleteQuestion(QuestionBoardVO qvo) {
+        return questionDAO.deleteQuestion(qvo);
+    }
+
+    @Override
+    public int setViewCount(QuestionBoardVO qvo) {
+    	return questionDAO.setViewCount(qvo);
     }
 }

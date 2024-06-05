@@ -11,7 +11,24 @@ public class QuestionBoardVO {
     private boolean deleteyn;
     private String createDate;
     private String modifiedDate;
-
+    
+    
+    
+    public QuestionBoardVO(String boardQuestionId, String title, String content, int viewCount, String pictureFile, String userId, boolean deleteyn, String createDate, String modifiedDate) {
+    
+    this.boardQuestionId = boardQuestionId;
+    this.title = title;
+    this.content = content;
+    this.viewCount = viewCount;
+    this.pictureFile = pictureFile;
+    this.userId = userId;
+    this.deleteyn = deleteyn;
+    this.createDate = createDate;
+    this.modifiedDate = modifiedDate;
+    
+    }
+    
+   
     // Getter and Setter for boardQuestionId
     public String getBoardQuestionId() {
         return boardQuestionId;
